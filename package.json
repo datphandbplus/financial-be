@@ -1,0 +1,58 @@
+{
+  "name": "finance",
+  "version": "1.0.0",
+  "description": "Finance Backend",
+  "author": "Revolve Team",
+  "private": true,
+  "scripts": {
+    "generator": "MULTI_DB=true node ./node_modules/.bin/generator",
+    "lint": "./node_modules/.bin/eslint app.js config handlers helpers middlewares models resources routes",
+    "test": "./node_modules/.bin/jasmine",
+    "start": "node --max_old_space_size=2048 ./node_modules/.bin/nodemon ./bin/www",
+    "debug": "node --max_old_space_size=2048 ./node_modules/.bin/nodemon --inspect ./bin/www",
+    "deploy:setup": "pm2 deploy ecosystem.config.js staging setup",
+    "deploy:live": "pm2 deploy ecosystem.config.js staging",
+    "release:setup": "pm2 deploy ecosystem.config.js production setup",
+    "release:live": "pm2 deploy ecosystem.config.js production"
+  },
+  "_moduleAliases": {
+    "@root": ".",
+    "@handlers": "./handlers",
+    "@helpers": "./helpers",
+    "@middlewares": "./middlewares",
+    "@migrations": "./migrations",
+    "@models": "./models",
+    "@public": "./public",
+    "@resources": "./resources",
+    "@routes": "./routes",
+    "@views": "./views"
+  },
+  "dependencies": {
+    "exceljs": "1.12.0",
+    "image-size": "0.7.4",
+    "jade": "1.11.0",
+    "nodejs-core": "https://github.com/datphandbplus/nodejs-core.git"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.2.0",
+    "@commitlint/config-conventional": "^8.2.0",
+    "babel-eslint": "10.0.1",
+    "cross-env": "5.2.0",
+    "eslint": "5.15.3",
+    "eslint-config-google": "0.12.0",
+    "eslint-config-standard": "12.0.0",
+    "eslint-plugin-import": "2.16.0",
+    "eslint-plugin-node": "8.0.1",
+    "eslint-plugin-promise": "4.0.1",
+    "eslint-plugin-standard": "4.0.0",
+    "husky": "^3.0.8",
+    "inquirer": "^7.0.0",
+    "jasmine": "3.3.1",
+    "nodemon": "1.18.10"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  }
+}
